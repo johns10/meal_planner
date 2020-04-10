@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class = "col">
+                <img src = "/media/{{object.photo}}", width="200"></img>
+            </div>
+            <div class = "col">
+                <h1>{{ object.title }}</h1>
+            </div>
+        </div>
+        <div class="panel-body">
+            <p>{{ object.description }}</p>
+            <p>{{ object.quantity }}</p>
+        </div>
+    </div>
+</div>
+
+<div class="panel-body"> 
+    <table class="table table-hover">
+        <tr>
+            <th>Name<br></th>
+            <th>Quantity<br></th>
+            <th>Calories<br></th>
+            <th>Protein<br></th>
+            <th>Fat</th>
+            <th>Carbohydrates<br></th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for meal in object.meals.all %}
+            <tr>
+                <td>{{ meal.title }}</td>
+                <td><a href="{% url 'puretacodiet:meal-update' meal.id %}" class="btn btn-info" role="button">Edit</a></td>
+                <td><a href="{% url 'puretacodiet:meal-delete' meal.id %}" class="btn btn-info" role="button">Delete</a></td> 
+                {% for recipe in meal.recipes.all %} 
+                    <tr>
+                        <td></td>
+                        <td>{{ recipe.title }}</td>
+                    </tr>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'puretacodiet:meal-create' %}" class="btn btn-info" role="button">Add A New Meal</a>
+    <a href="{% url 'puretacodiet:meal-add' object.id %}" class="btn btn-info" role="button">Add An Existing Meal</a>
+</div>
+<div class="container">
+  <h2>Simple Collapsible</h2>
+  <p>Click on the button to toggle between showing and hiding content.</p>
+  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Simple collapsible</button>
+  <div id="demo" class="collapse">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  </div>
+</div>
+<div class="contai
+<div class="row-fluid">
+    <a href="{% url 'puretacodiet:plan-update' object.id %}" class="btn btn-info" role="button">Edit Plan</a>
+    <a href="{% url 'puretacodiet:plan-delete' object.id %}" class="btn btn-info" role="button">Delete Plan</a>
+    <a href="{% url 'puretacodiet:plan-create' %}" class="btn btn-info" role="button">Add Another Plan</a>
+</div>
+{% endblock %}
+

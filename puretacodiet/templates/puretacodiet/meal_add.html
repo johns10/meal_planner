@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<form action="" method="post" enctype="multipart/form-data" action='/puretacodiet/mealadd/'>
+    {% csrf_token %}
+    {% for meal in meals %}
+        <p><input type="checkbox" value="{{meal.id}}" name="choices"> {{ meal.title }}</p>
+    {% endfor %}
+<input class="btn btn-default" type="submit" value="Save" />
+{% endblock %}

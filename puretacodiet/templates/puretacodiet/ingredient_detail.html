@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class = "col">
+                <img src = "/media/{{object.photo}}", width="200"></img>
+            </div>
+            <div class = "col">
+                <h1>{{ object.title }}</h1>
+            </div>
+        </div>
+        <div class="panel-body">            
+            <p>Calories: {{ object.calories }}</p>
+            <p>Protein: {{ object.protein }}</p>
+            <p>Fat: {{ object.fat }}</p>
+            <p>Carbohydrates: {{ object.carbohydrates }}</p>
+        </div>
+    </div>
+</div>
+    
+<div class="row-fluid">
+    <a href="{% url 'puretacodiet:ingredient-update' object.id %}" class="btn btn-info" role="button">Edit</a>
+    <a href="{% url 'puretacodiet:ingredient-delete' object.id %}" class="btn btn-info" role="button">Delete</a>
+    <a href="{% url 'puretacodiet:ingredient-create' %}" class="btn btn-info" role="button">Add Another</a>
+</div>
+{% endblock %}
+

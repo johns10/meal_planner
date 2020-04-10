@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row-fluid">
+    <h1>Plans</h1>    
+    <div class="panel panel-default">
+        {% for object in object_list %}
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion1" href="#plan-{{ object.pk }}">{{ object.title }}</a>
+                </h4>
+            </div>
+            <div id="plan-{{ object.pk }}" class="panel-collapse collapse"> 
+                <div class="panel-body">
+                    <div class="panel-group" id="accordion{{ object.pk }}">
+                        {% for meal in object.meals.all %}   
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion{{ object.pk }}" href="#meal-{{ meal.pk }}">{{ meal.title }}</a>
+                                    </h4>
+                                </div>
+                                <div id="meal-{{ meal.pk }}" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <div class="panel-group" id="accordion{{ meal.pk }}">
+                                            {% for mealitem in meal.mealitem_set.all %}
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading"> 
+                                                        <h4 class="panel-title">{{ mealitem.recipe.title }}</h4>
+                                                    </div>
+                                                    <div class="panel-footer"> 
+                                                        <span class="btn-group">
+                                                            <a href="{% url 'puretacodiet:mealitem-update' mealitem.id %}" class="btn btn-info" role="button">Edit</a>
+                                                            <a href="{% url 'puretacodiet:mealitem-delete' mealitem.id %}" class="btn btn-info" role="button">Delete</a>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <a href="{% url 'puretacodiet:mealitem-create' meal=meal.pk %}" class="btn btn-info" role="button">Add a Taco</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>                    
+                <div class="panel-footer">
+                    <span class="btn-group">
+                        <a href="{% url 'puretacodiet:meal-create' %}" class="btn btn-info" role="button">Add A New Meal</a>
+                        <a href="{% url 'puretacodiet:meal-add' object.id %}" class="btn btn-info" role="button">Add An Existing Meal</a>
+                    </span>
+                </div>
+            </div>
+        {% endfor %}    
+    </div>
+    
+{% endblock %}

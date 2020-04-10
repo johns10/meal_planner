@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row-fluid">
+    <div class="panel-body">
+        <p>{{ object.plan }}</p>
+        <p>{{ object.quantity }} X {{ object.taco }}</p>
+    </div>
+</div>
+<div class="row-fluid">
+    <a href="{% url 'puretacodiet:plandetail-update' object.id %}" class="btn btn-info" role="button">Edit</a>
+    <a href="{% url 'puretacodiet:plandetail-delete' object.id %}" class="btn btn-info" role="button">Delete</a>
+    <a href="{% url 'puretacodiet:plandetail-create' %}" class="btn btn-info" role="button">Add Another</a>
+</div>
+{% endblock %}
+

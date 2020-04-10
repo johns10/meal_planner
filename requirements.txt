@@ -1,0 +1,11 @@
+requests
+certifi
+urllib3
+Django
+psycopg2
+django-autoslug
+Pillow
+django-compressor
+django-libsass
+django-bootstrap3-sass
+django-mathfilters

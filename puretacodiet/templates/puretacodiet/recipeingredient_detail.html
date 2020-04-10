@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row-fluid">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <div class = "col">
+            </div>
+        </div>
+        <div class="panel-body">            
+            <p>Ingredient: {{ object.ingredient }}</p>
+            <p>Recipe: {{ object.recipe }}</p>
+        </div>
+    </div>
+</div>
+    
+<div class="row-fluid">
+    <a href="{% url 'puretacodiet:recipeingredient-update' object.id %}" class="btn btn-info" role="button">Edit</a>
+    <a href="{% url 'puretacodiet:recipeingredient-delete' object.id %}" class="btn btn-info" role="button">Delete</a>
+    <a href="{% url 'puretacodiet:recipeingredient-create' %}" class="btn btn-info" role="button">Add Another</a>
+</div>
+{% endblock %}
+

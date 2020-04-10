@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="row-fluid">
+    <h1>Meals</h1>
+    <ul class="list-group">
+        {% for object in object_list %}
+            <li class="list-group-item"><a href="{% url 'puretacodiet:meal-view' object.id %}">{{ object.title }}</a></li>
+        {% empty %}
+            <h1>No Diet Plans Yet</h1>
+        {% endfor %}
+    </ul>
+</div>
+<div class="row-fluid">
+    <a href="{% url 'puretacodiet:meal-create' %}" class="btn btn-info" role="button">Add a Meal</a>
+</div>
+{% endblock %}
